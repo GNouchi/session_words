@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <style>
+        .red{
+            color: red
+        }
+        .green{
+            color:green
+        }
+        .blue{
+            color: blue
+        }
+        .on{
+            font-size: 26px;
+        }
+        .formcont {
+            color: white;
+        }
+        .navbar{
+            border-radius:0px 0px 8px  8px;
+            padding: 2em; 
+        }
+        
+    </style>
+  </head>
+  <body>
+<!-- start main container -->
+    <div  class = "container maincont">
+            <div class="pos-f-t">
+                    <div class="collapse" id="navbarToggleExternalContent">
+                      <div class="bg-dark p-4">
+<!-- put stuff in line heeeeeeeeeeeeeeeeeere -->
+<!-- start form container -->
+<div class = "container formcont">
+        <form action="submit" method="POST">
+                {% csrf_token %}
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Add New Word</label>
+                  <div class="col-sm-10">
+                    <input name= "word" type="text" class="form-control" placeholder="">
+                  </div>
+                </div>
+                <fieldset class="form-group">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Choose a Color</legend>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input name = "color" class="form-check-input" type="radio" name="gridRadios" value="red" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                          Red
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input name = "color" class="form-check-input" type="radio" name="gridRadios" value="blue">
+                        <label class="form-check-label" for="gridRadios2">
+                          Blue
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input name = "color" class="form-check-input" type="radio" name="gridRadios" value="green">
+                        <label class="form-check-label" for="gridRadios3">
+                          Green
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="form-group row">
+                  <div class="col-sm-2"></div>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input name="check"  class="form-check-input" type="checkbox">
+                      <label class="form-check-label" for="gridCheck1">
+                        Make it bigger~!
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Add to Session</button>
+                  </div>
+                </div>
+              </form>
+              <div class="form-group row">
+                  <form action="reset" method="POST">
+                          {% csrf_token %}
+                      <div class="col-sm-6">
+                          <button type="submit" class="btn btn-danger">Reset</button>
+                      </div>
+                  </form>
+              </div>
+</div>
+<!-- end form container -->
+                    </div>
+                    </div>
+                    <nav class="navbar navbar-dark bg-dark">
+                      <button class="navbar-toggler btn-block" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
+                        <h2>Write text here!</h2>
+                      </button>
+                    </nav>
+                  </div>
+
+<!-- start right container -->
+<div class = "container rightcont">
+            <p>
+                <br>
+                {%for x in request.session.arr reversed %}
+                    <p class = "{{x.color}} {{x.check}}">{{x.word}}</p>
+                {%endfor%}
+            </p>
+
+        </div>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
